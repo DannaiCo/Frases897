@@ -79,8 +79,11 @@
           el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
           el.classList.add("mostrar");
         }
-
-        mostrarFrase();
+      mostrarFrase();
+setInterval(() => {
+  el.classList.remove("mostrar");
+  setTimeout(mostrarFrase, 500); // Espera a que desaparezca antes de mostrar la siguiente
+}, 5000); // Cambia cada 5 segundos
       });
   </script>
 </body>
