@@ -30,25 +30,25 @@
       z-index: 0;
     }
 
-   .frase {
-  position: absolute;
-  top: 68%;
-  left: 52%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 350px;
-  text-align: center;
-  font-size: 35px;
-  line-height: 1.1;
-  font-weight: bold;
-  color: #c81a0a;
-  font-family: 'Berkshire Swash', cursive;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-}
+    .frase {
+      position: absolute;
+      top: 68%;
+      left: 52%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 350px;
+      text-align: center;
+      font-size: 35px;
+      line-height: 1.1;
+      font-weight: bold;
+      color: #c81a0a;
+      font-family: 'Berkshire Swash', cursive;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+    }
 
     .mostrar {
       opacity: 1;
@@ -72,19 +72,17 @@
       .then(res => res.json())
       .then(frases => {
         const el = document.getElementById("frase");
-        let i = 0;
-function mostrarFrase() {
-  el.classList.remove("mostrar");
-  setTimeout(() => {
-    let texto = frases[i].toLowerCase();
-    el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
-    el.classList.add("mostrar");
-    i = (i + 1) % frases.length;
-  }, 500);
-}
+
+        function mostrarFrase() {
+          const aleatoria = frases[Math.floor(Math.random() * frases.length)];
+          let texto = aleatoria.toLowerCase();
+          el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
+          el.classList.add("mostrar");
+        }
+
         mostrarFrase();
-        setInterval(mostrarFrase, 8000);
       });
   </script>
 </body>
 </html>
+
