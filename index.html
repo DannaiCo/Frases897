@@ -73,18 +73,18 @@
       const el = document.getElementById("frase");
       let i = 0;
 
-      function mostrarFrase() {
-        el.classList.remove("mostrar");
-        setTimeout(() => {
-          let texto = frases[i].toLowerCase();
-          el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
-          el.classList.add("mostrar");
-          i = (i + 1) % frases.length;
-        }, 500);
+            function mostrarFrase() {
+        let texto = frases[i].toLowerCase();
+        el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
+        el.classList.add("mostrar");
+        i = (i + 1) % frases.length;
       }
 
-      mostrarFrase();
-      setInterval(mostrarFrase, 8000);
+      mostrarFrase(); // Mostrar la primera frase de inmediato
+      setInterval(() => {
+        el.classList.remove("mostrar");
+        setTimeout(mostrarFrase, 500);
+      }, 8000);
     });
 </script>
 </body>
