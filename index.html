@@ -2,8 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Día de la Independencia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Fredoka:wght@500&display=swap" rel="stylesheet">
+  <title>San Valentin 2026</title>
+
+  <!-- Tipografía -->
+  <link rel="stylesheet" href="https://use.typekit.net/vsp7vcb.css">
+
   <style>
     html, body {
       margin: 0;
@@ -11,7 +14,9 @@
       overflow: hidden;
       width: 897px;
       height: 192px;
-      font-family: 'Open Sans', sans-serif;
+      font-family: "poppins", sans-serif;
+      font-weight: 300;
+      font-style: italic;
     }
 
     .contenedor {
@@ -40,13 +45,13 @@
       text-align: center;
       font-size: 28px;
       line-height: 1.1;
-      font-weight: 500;
-      color: #f7ccbc;
-      font-family: 'Fredoka', sans-serif; /* 👈 cambiada a Fredoka */
+      font-weight: 300;
+      font-style: italic;
+      color: #842a4d;
+      font-family: "poppins", sans-serif;
       opacity: 0;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
       word-wrap: break-word;
-      overflow-wrap: break-word;
       white-space: normal;
     }
 
@@ -55,6 +60,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="contenedor">
     <video autoplay muted loop playsinline id="fondoVideo">
@@ -66,39 +72,37 @@
   </div>
 
 <script>
-  const url = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiQGpJV4w1hZqhfJBMvtp3nh-IvO7Enpmfi-NuDvgjmE3g5tShtQyIPpROXDeEdRPVg66pP9jBgTaNMUN_aiWpTEKE8md5Xuda25qKcj-ITSRwCw5qvF_OO1MYp0bSr-k8SB1N8uuxy4cK7n96McNbz5SuSVlSWwfONs_MHuat_WuqK6_32XH_0HT1SRUAesrKvFREVYPLsEwdGVFaBNaXJQo60JSTu6d82h1I7R3Qb3MIiCrAfuRq_rpirSwXKuTS8VtaCDNtaELWSPJtCjGNGX-R2XpDJduQnxJy5&lib=MKcE4wsyGQpW6RnsP8GhHoaeEHa1C_Htb";
+  const frases = [
+    "¿Llegaste bien?",
+    "Acompañar hasta la estación",
+    "Esperar el siguiente bus",
+    "Prestar la tarjeta",
+    "Dejar que suba primero",
+    "Buscar la ruta que mejor le funciona",
+    "Acompañar así se pase tu bus"
+  ];
 
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const frases = data.mensajes; // 👈 aquí está el arreglo correcto
-      const el = document.getElementById("frase");
+  const el = document.getElementById("frase");
+  let index = 0;
 
-      function mostrarFrase() {
-        const aleatoria = frases[Math.floor(Math.random() * frases.length)];
-        let texto = aleatoria.toLowerCase();
-        el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
-        el.classList.add("mostrar");
-      }
+  function mostrarFrase() {
+    el.classList.remove("mostrar");
 
-      mostrarFrase();
+    setTimeout(() => {
+      el.innerText = frases[index];
+      el.classList.add("mostrar");
+      index = (index + 1) % frases.length;
+    }, 500);
+  }
 
-      setInterval(() => {
-        el.classList.remove("mostrar");
-        setTimeout(mostrarFrase, 500); // espera a que desaparezca antes de mostrar la siguiente
-      }, 5000);
-    })
-    .catch(err => {
-      console.error("Error cargando frases:", err);
-      document.getElementById("frase").innerText = "Error al cargar frase";
-    });
+  // Mostrar primera frase
+  mostrarFrase();
+
+  // Rotar cada 5 segundos
+  setInterval(mostrarFrase, 5000);
 </script>
+
 </body>
 </html>
-
-
-
-
-
 
 
